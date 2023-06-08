@@ -25,6 +25,7 @@ header ul {
 header ul li {
     text-align: center;
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
 }
@@ -35,7 +36,7 @@ a:link, a:-webkit-any-link {
 }
 
 header ul li img {
-    width: 40px;
+    width: 80px;
 }
 
 #hero {
