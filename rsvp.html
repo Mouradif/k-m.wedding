@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding RSVP Form</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/rsvp.css" />
+  <script src="lang.js"></script>
+</head>
+<body onload="loadConfig()">
+<header>
+  <nav>
+    <ul>
+      <li><a href="/" data-lang-string="home"></a></li>
+      <li><a href="location.html" data-lang-string="location"></a></li>
+      <li><a href="accomodation.html" data-lang-string="accommodation"></a></li>
+      <li><a href=""><img src="img/logo.png" alt="logo" /> </a></li>
+      <li><a href="things-to-do.html" data-lang-string="thingsToDo"></a></li>
+      <li><a href="programme.html" data-lang-string="programme"></a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h1>Wedding RSVP</h1>
+  <form>
+    <label for="name" data-lang-string="yourName"></label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email" data-lang-string="yourEmail"></label>
+    <input type="email" id="email" name="email" required>
+    <label for="food" data-lang-string="foodRestrictions"></label>
+    <input type="text" id="food" name="food[]">
+
+    <label for="accomodation" data-lang-string="accomodationPreferences"></label>
+    <select id="accomodation" name="accomodation" required>
+      <option value="" data-lang-string="selectInTheList"></option>
+      <option value="self" data-lang-string="organizeByMyself"></option>
+      <option value="managed" data-lang-string="contactWithOptions"></option>
+    </select>
+
+    <div id="guests-container">
+    </div>
+
+    <div class="btn-container">
+      <button id="add-guest-btn" class="btn add-guest" type="button" data-lang-string="addGuest"></button>
+    </div>
+
+    <div class="spacer"></div>
+    <label for="message" data-lang-string="additionalMessage"></label>
+    <textarea id="message" name="message" rows="4"></textarea>
+
+    <div class="btn-container">
+      <button class="btn submit" type="submit">Submit</button>
+    </div>
+  </form>
+  <p id="success-message">Thanks for your RSVP! See you at the wedding!</p>
+</div>
+
+<script>
+  document.querySelector('form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const data = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      food: document.getElementById('food').value,
+      accomodation: document.getElementById('accomodation').value,
+      message: document.getElementById('message').value,
+      extras: []
+    };
+    const guests = document.getElementsByClassName('guest-container');
+    for (const guest of guests) {
+      data.extras.push({
+        name: guest.querySelector('.extra-name').value,
+        food: guest.querySelector('.extra-food').value
+      });
+    }
+    const res = await fetch('https://api.k-m.wedding/rsvp', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    console.log(result);
+    document.getElementById('success-message').style.display = 'block';
+  });
+  document.getElementById('add-guest-btn').addEventListener('click', function() {
+    const lang = window.langStrings[window.localStorage.getItem('lang')];
+    const guestsContainer = document.getElementById('guests-container');
+    const guestContainer = document.createElement('div');
+    guestContainer.className = 'guest-container';
+
+    const guestNameLabel = document.createElement('label');
+    guestNameLabel.innerHTML = lang.guestName;
+    guestContainer.appendChild(guestNameLabel);
+
+    const guestNameInput = document.createElement('input');
+    guestNameInput.type = 'text';
+    guestNameInput.className = 'extra-name';
+    guestNameInput.name = 'extra[]';
+    guestNameInput.required = true;
+    guestContainer.appendChild(guestNameInput);
+
+    const guestFoodLabel = document.createElement('label');
+    guestFoodLabel.innerHTML = lang.foodRestrictions;
+    guestContainer.appendChild(guestFoodLabel);
+
+    const guestFoodInput = document.createElement('input');
+    guestFoodInput.type = 'text';
+    guestFoodInput.className = 'extra-food';
+    guestFoodInput.name = 'food[]';
+    guestContainer.appendChild(guestFoodInput);
+
+    const btnContainer = document.createElement('div');
+    btnContainer.className = 'btn-container';
+    const removeGuestBtn = document.createElement('button');
+    removeGuestBtn.className = 'btn remove-guest';
+    removeGuestBtn.innerHTML = lang.removeGuest;
+    removeGuestBtn.addEventListener('click', function() {
+      guestsContainer.removeChild(guestContainer);
+    });
+    btnContainer.appendChild(removeGuestBtn);
+    guestContainer.appendChild(btnContainer);
+
+    guestsContainer.appendChild(guestContainer);
+  });
+</script>
+</body>
+</html>

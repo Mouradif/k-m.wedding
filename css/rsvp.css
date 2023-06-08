@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #262812;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.guest-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.btn {
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    filter: brightness(1.5);
+}
+
+.add-guest {
+    background-color: #84583b;
+}
+
+.remove-guest {
+    background-color: #494d36;
+}
+
+#success-message {
+    display: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.submit {
+    background-color: #494d36;
+}
+
+.spacer {
+    height: 2em;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 700px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+}

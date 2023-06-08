@@ -1,0 +1,56 @@
+html {
+    background: #fff;
+    font-family: Montaga, sans-serif;
+}
+body {
+
+    margin: 0;
+    padding: 0;
+}
+
+.thin-line {
+    height: 40px;
+    background: #84583b;
+}
+
+header ul {
+    padding: 2em;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+header ul li {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+a:link, a:-webkit-any-link {
+    color: #262812;
+    text-decoration: none;
+}
+
+header ul li img {
+    width: 40px;
+}
+
+#hero {
+    margin-top: 100px;
+    display: flex;
+    gap: 18px;
+    flex-direction: column;
+    align-items: center;
+    color: #989177;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+#hero .names {
+    font-size: 101px;
+    line-height: 1;
+    color: #262812;
+}
