@@ -2,6 +2,32 @@ html {
     background: #fff;
     font-family: Montaga, sans-serif;
 }
+
+#content {
+    padding: 40px 80px;
+    max-width: 1080px;
+    margin: 0 auto;
+    font-size: 18pt;
+}
+
+#content a:link {
+    text-decoration: underline;
+    color: #3000be;
+}
+
+h1 {
+    text-align: center;
+    font-size: 64pt;
+}
+
+h2 {
+    font-size: 32pt;
+}
+
+h3 {
+    font-size: 28pt;
+}
+
 body {
 
     margin: 0;
@@ -53,4 +79,27 @@ header ul li img {
     font-size: 101px;
     line-height: 1;
     color: #262812;
+}
+
+.map-preview {
+    border: 3px solid black;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1080px) {
+    h1 {
+        font-size: 48pt;
+    }
+
+    h2 {
+        font-size: 22pt;
+    }
+
+    h3 {
+        font-size: 18pt;
+    }
+   #content {
+       font-size: 16pt;
+   }
 }
