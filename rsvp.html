@@ -86,8 +86,6 @@
         food: guest.querySelector('.extra-food').value
       });
     }
-    console.log(data);
-    return;
     const res = await fetch('https://api.k-m.wedding/rsvp', {
       method: 'POST',
       headers: {
