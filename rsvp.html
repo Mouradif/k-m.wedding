@@ -31,6 +31,13 @@
 
     <label for="email" data-lang-string="yourEmail"></label>
     <input type="email" id="email" name="email" required>
+    <label for="menu" data-lang-string="selectAMenu"></label>
+    <select id="menu" name="menu" required>
+      <option value="" data-lang-string="selectInTheList"></option>
+      <option value="meat" data-lang-string="meat"></option>
+      <option value="fish" data-lang-string="fish"></option>
+      <option value="veggie" data-lang-string="veggie"></option>
+    </select>
     <label for="food" data-lang-string="foodRestrictions"></label>
     <input type="text" id="food" name="food[]">
 
@@ -65,6 +72,7 @@
     const data = {
       name: document.getElementById('name').value,
       email: document.getElementById('email').value,
+      menu: document.getElementById('menu').value,
       food: document.getElementById('food').value,
       accomodation: document.getElementById('accomodation').value,
       message: document.getElementById('message').value,
@@ -74,9 +82,12 @@
     for (const guest of guests) {
       data.extras.push({
         name: guest.querySelector('.extra-name').value,
+        menu: guest.querySelector('.extra-menu').value,
         food: guest.querySelector('.extra-food').value
       });
     }
+    console.log(data);
+    return;
     const res = await fetch('https://api.k-m.wedding/rsvp', {
       method: 'POST',
       headers: {
@@ -105,7 +116,32 @@
     guestNameInput.required = true;
     guestContainer.appendChild(guestNameInput);
 
+    const guestMenuLabel = document.createElement('label');
+    guestMenuLabel.dataset.langString = 'selectAMenu';
+    guestMenuLabel.innerHTML = lang.selectAMenu;
+    guestContainer.appendChild(guestMenuLabel);
+
+    const guestMenuInput = document.createElement('select');
+    guestMenuInput.required = true;
+    guestMenuInput.className = 'extra-menu';
+    guestMenuInput.name = 'menu[]';
+    const optionChoose = document.createElement('option');
+    optionChoose.dataset.langString = 'selectInTheList';
+    optionChoose.innerHTML = lang.selectInTheList;
+    optionChoose.value = "";
+    guestMenuInput.appendChild(optionChoose);
+    const options = ['meat', 'fish', 'veggie'];
+    for (const option of options) {
+      const tag = document.createElement('option');
+      tag.dataset.langString = option;
+      tag.innerHTML = lang[option];
+      tag.value = option;
+      guestMenuInput.appendChild(tag);
+    }
+    guestContainer.appendChild(guestMenuInput);
+
     const guestFoodLabel = document.createElement('label');
+    guestFoodLabel.dataset.langString = 'foodRestrictions';
     guestFoodLabel.innerHTML = lang.foodRestrictions;
     guestContainer.appendChild(guestFoodLabel);
 
