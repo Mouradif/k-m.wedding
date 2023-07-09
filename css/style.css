@@ -88,6 +88,32 @@ header ul li img {
     overflow: hidden;
 }
 
+/*.programme-timings {*/
+/*    width: 700px;*/
+/*    padding: 10px 20px;*/
+/*    margin: 0 auto;*/
+/*    border-radius: 5px;*/
+/*    overflow: hidden;*/
+/*    border: 1px solid transparent;*/
+/*}*/
+
+/*.programme-timing:nth-child(odd) {*/
+/*    background: #989177;*/
+/*}*/
+
+/*.programme-timing:nth-child(even) {*/
+/*    background: #cccccc;*/
+/*}*/
+
+/*.programme-timing .time {*/
+/*    font-weight: bold;*/
+/*    display: inline-block;*/
+/*    width: 120px;*/
+/*    text-align: center;*/
+/*    background: #262812;*/
+/*    color: white;*/
+/*}*/
+
 @media screen and (max-width: 1080px) {
     h1 {
         font-size: 48pt;
