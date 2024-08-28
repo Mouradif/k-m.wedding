@@ -1,0 +1,107 @@
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.hero-section {
+    background-image: url('../img/gallery-main.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 4em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-section {
+    display: flex;
+}
+
+.timeline-container {
+    position: relative;
+}
+
+.timeline {
+    width: 140px;
+    padding: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5%;
+    overflow: auto;
+}
+
+.timeline div {
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.active-section {
+    font-weight: bold;
+}
+
+.gallery {
+    width: 90%;
+    padding: 10px;
+}
+
+.gallery-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.gallery-item {
+    width: 32%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.gallery-surprise {
+    width: calc(96% + 10px);
+}
+
+.gallery-surprise video {
+    width: 100%;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+    .gallery-item {
+        width: 100%;
+    }
+}
